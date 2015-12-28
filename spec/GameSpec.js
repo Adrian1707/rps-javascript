@@ -63,7 +63,47 @@ describe("Game", function() {
       game.compChoice();
       game.opponentChoice = "Paper"
       expect(game.lose()).toEqual(true);
-    })
+    });
+
+    it('should equal true is user choice is paper and comp choice is scissors', function(){
+      game.userSelect("Paper")
+      game.compChoice();
+      game.opponentChoice = "Scissors"
+      expect(game.lose()).toEqual(true);
+    });
+
+    it('should equal true is user choice is scissors and comp choice is rock', function(){
+      game.userSelect("Scissors")
+      game.compChoice();
+      game.opponentChoice = "Rock"
+      expect(game.lose()).toEqual(true);
+    });
+
+  })
+
+  describe('result', function(){
+
+    it('should display player as winner if player beats computer', function(){
+      game.userSelect("Paper");
+      game.compChoice();
+      game.opponentChoice = "Rock"
+      expect(game.result()).toEqual("Player wins")
+    });
+
+  it('should display the computer wins if computer beats player', function(){
+      game.userSelect("Paper");
+      game.compChoice();
+      game.opponentChoice = "Scissors"
+      expect(game.result()).toEqual("Computer wins")
+    });
+
+  it('should display a draw if computer and player both pick the same', function(){
+      game.userSelect("Paper");
+      game.compChoice();
+      game.opponentChoice = "Paper"
+      expect(game.result()).toEqual("It's a draw")
+  });
+  
   })
 
 });

@@ -44,15 +44,27 @@ Game.prototype.lose = function(){
   };
 }
 
+Game.prototype.result = function(){
+  if(this.win() == true){
+    return "Player wins";
+  }
+  else if(this.draw() == true){
+    return "It's a draw";
+  }
+  else{
+    return "Computer wins";
+  }
+}
 
-var game = new Game();
 
-game.userSelect("Rock")
+// var game = new Game();
 
-game.compChoice();
+// game.userSelect("Rock")
 
-debug(game.win());
-debug("Computer chose " + game.opponentChoice)
+// game.compChoice();
+
+// debug(game.result());
+// debug("Computer chose " + game.opponentChoice)
 
 
 // var items = ["rock","paper","scissors"]
