@@ -22,6 +22,17 @@ Game.prototype.draw = function(){
   };
 }
 
+Game.prototype.win = function(){
+  if(this.userChoice == "Rock" && this.opponentChoice == "Scissors" ||
+    this.userChoice == "Paper" && this.opponentChoice == "Rock" ||
+    this.userChoice == "Scissors" && this.opponentChoice == "Paper"){
+    return true;
+  }
+  else{
+    return false;
+  };
+}
+
 var game = new Game();
 
 game.userSelect("Rock")
