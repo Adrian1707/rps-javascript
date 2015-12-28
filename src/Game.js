@@ -33,13 +33,26 @@ Game.prototype.win = function(){
   };
 }
 
+Game.prototype.lose = function(){
+  if(this.userChoice == "Rock" && this.opponentChoice == "Paper" ||
+    this.userChoice == "Paper" && this.opponentChoice == "Scissors" ||
+    this.userChoice == "Scissors" && this.opponentChoice == "Rock"){
+    return true;
+  }
+  else{
+    return false;
+  };
+}
+
+
 var game = new Game();
 
 game.userSelect("Rock")
 
 game.compChoice();
 
-// debug(game.draw());
+debug(game.win());
+debug("Computer chose " + game.opponentChoice)
 
 
 // var items = ["rock","paper","scissors"]
