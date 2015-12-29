@@ -11,11 +11,12 @@ app.get('/', function (req, res) {
 });
 
 app.get('/weapon', function (req, res){
-	res.render('weapon');
+	var user_name = user;
+	res.render('weapon', { name: user_name } );
 });
 
 app.post('/weapon/:name',function (req,res){
-	var user = req.body.user;
+	user = req.body.user;
 	console.log(user);
 	res.redirect('/weapon');
 });
@@ -26,3 +27,6 @@ var server = app.listen(3000, function () {
 
   console.log('Example app listening at http://%s:%s', host, port);
 });
+
+
+// pass variable paramater around controller (maybe using sessions?) and 
