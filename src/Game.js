@@ -57,14 +57,17 @@ Game.prototype.result = function(){
 }
 
 
-// var game = new Game();
 
-// game.userSelect("Rock")
 
-// game.compChoice();
+var game = new Game();
 
-// debug(game.result());
-// debug("Computer chose " + game.opponentChoice)
+game.userSelect("Paper")
+
+game.compChoice();
+
+debug(game.result());
+debug("You chose " + game.userChoice)
+debug("Computer chose " + game.opponentChoice)
 
 
 // var items = ["rock","paper","scissors"]

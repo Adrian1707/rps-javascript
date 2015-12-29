@@ -1,0 +1,22 @@
+{
+  "name": "adrian",
+  "version": "1.0.0",
+  "description": "The purpose of this repository is to learn more about Javascript, and specifically, how to test-drive code in the language using Jasmine. The repo contains code for a simple game of Rock, Paper, Scissors which is to help me gain a better understanding of the language.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Adrian1707/rps-javascript.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Adrian1707/rps-javascript/issues"
+  },
+  "homepage": "https://github.com/Adrian1707/rps-javascript",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
