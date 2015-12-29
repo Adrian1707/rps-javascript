@@ -1,3 +1,7 @@
 html
 body 
 h1 Choose your weapon #{name}
+form(name="weapon", action="/play/:weapon", method="post")
+	input(type="submit" value="Rock" name="weapon")
+	input(type="submit" value="Paper" name="weapon")
+	input(type="submit" value="Scissors" name="weapon")

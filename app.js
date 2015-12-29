@@ -10,7 +10,7 @@ app.set('view engine', 'jade');
 app.use(session({
   secret: "Adrian's secret",
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: false
 }))
 
 
@@ -27,6 +27,17 @@ app.post('/weapon/:name',function (req,res){
 	req.session.player = req.body.user;
 	res.redirect('/weapon');
 });
+
+app.get('/play', function (req,res){
+	var user_weapon = req.session.weapon;
+	res.render('play', { weapon: user_weapon});
+})
+
+app.post('/play/:weapon', function (req,res){
+	req.session.weapon = req.body.weapon;
+	console.log(req.session.weapon);
+	res.redirect('/play');
+})
 
 var server = app.listen(3000, function () {
   var host = server.address().address;
