@@ -1,23 +1,30 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
+var session = require('express-session');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', './views');
 app.set('view engine', 'jade');
+
+app.use(session({
+  secret: "Adrian's secret",
+  resave: false,
+  saveUninitialized: true
+}))
+
 
 app.get('/', function (req, res) {
   res.render('index');
 });
 
 app.get('/weapon', function (req, res){
-	var user_name = user;
+	var user_name = req.session.player;
 	res.render('weapon', { name: user_name } );
 });
 
 app.post('/weapon/:name',function (req,res){
-	user = req.body.user;
-	console.log(user);
+	req.session.player = req.body.user;
 	res.redirect('/weapon');
 });
 
