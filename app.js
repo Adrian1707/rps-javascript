@@ -1,5 +1,8 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', './views');
 app.set('view engine', 'jade');
 
@@ -11,7 +14,9 @@ app.get('/weapon', function (req, res){
 	res.render('weapon');
 });
 
-app.post('/weapon',function (req,res){
+app.post('/weapon/:name',function (req,res){
+	var user = req.body.user;
+	console.log(user);
 	res.redirect('/weapon');
 });
 
