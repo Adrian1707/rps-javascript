@@ -1,14 +1,12 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var app = module.exports = express();
+var app = express();
 var session = require('express-session');
-var Game = require('./public/Game.js').Game;
-var new_game = new Game();
+var Game = require('./src/Game.js').Game;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', './views');
 app.set('view engine', 'jade');
-app.use(express.static(__dirname + "/public"));
 
 app.use(session({
   secret: "Adrian's secret",
@@ -39,9 +37,8 @@ app.get('/play', function (req,res){
 })
 
 app.post('/play/:weapon', function (req,res){
-	req.session.game = new_game;
+	req.session.game = new Game();
 	var game = req.session.game;
-	console.log(game.choices);
 	req.session.weapon = req.body.weapon;
 	var user_choice = game.userSelect(req.session.weapon);
 	req.session.comp_choice = game.compChoice();
