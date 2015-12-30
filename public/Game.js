@@ -56,6 +56,9 @@ Game.prototype.result = function(){
   }
 }
 
+module.exports = {  
+    Game : Game 
+}  
 
 
 // var game = new Game();
