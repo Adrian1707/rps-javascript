@@ -1,8 +1,8 @@
-function Game() {
+var Game = function () {
   this.choices = ["Rock","Paper","Scissors"];
   this.userChoice = "";
   this.opponentChoice = "";
-}
+};
 
 Game.prototype.userSelect = function(choice){
   this.userChoice = choice;
@@ -56,7 +56,7 @@ Game.prototype.result = function(){
   }
 }
 
-
+module.exports = Game;
 
 // var game = new Game();
 

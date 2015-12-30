@@ -1,73 +1,14 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var app = express();
+var app = module.exports = express();
 var session = require('express-session');
-// require('./public/Game');
+var Game = require('./public/Game.js').Game;
+var new_game = new Game();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', './views');
 app.set('view engine', 'jade');
-// app.use(express.static(__dirname + "/public"));
-
-
-function Game() {
-  this.choices = ["Rock","Paper","Scissors"];
-  this.userChoice = "";
-  this.opponentChoice = "";
-}
-
-Game.prototype.userSelect = function(choice){
-  this.userChoice = choice;
-}
-
-Game.prototype.compChoice = function(){
-  this.opponentChoice = this.choices[Math.floor(Math.random()*this.choices.length)];
-  return this.opponentChoice;
-}
-
-Game.prototype.draw = function(){
-  if(this.userChoice === this.opponentChoice){
-    return true;
-  }
-  else{
-    return false;
-  };
-}
-
-Game.prototype.win = function(){
-  if(this.userChoice == "Rock" && this.opponentChoice == "Scissors" ||
-    this.userChoice == "Paper" && this.opponentChoice == "Rock" ||
-    this.userChoice == "Scissors" && this.opponentChoice == "Paper"){
-    return true;
-  }
-  else{
-    return false;
-  };
-}
-
-Game.prototype.lose = function(){
-  if(this.userChoice == "Rock" && this.opponentChoice == "Paper" ||
-    this.userChoice == "Paper" && this.opponentChoice == "Scissors" ||
-    this.userChoice == "Scissors" && this.opponentChoice == "Rock"){
-    return true;
-  }
-  else{
-    return false;
-  };
-}
-
-Game.prototype.result = function(){
-  if(this.win() == true){
-    return "Player wins";
-  }
-  else if(this.draw() == true){
-    return "It's a draw";
-  }
-  else{
-    return "Computer wins";
-  }
-}
-
+app.use(express.static(__dirname + "/public"));
 
 app.use(session({
   secret: "Adrian's secret",
@@ -98,8 +39,9 @@ app.get('/play', function (req,res){
 })
 
 app.post('/play/:weapon', function (req,res){
-	req.session.game = new Game();
+	req.session.game = new_game;
 	var game = req.session.game;
+	console.log(game.choices);
 	req.session.weapon = req.body.weapon;
 	var user_choice = game.userSelect(req.session.weapon);
 	req.session.comp_choice = game.compChoice();
@@ -113,5 +55,7 @@ var server = app.listen(3000, function () {
 
   console.log('Example app listening at http://%s:%s', host, port);
 });
+
+
 
 
