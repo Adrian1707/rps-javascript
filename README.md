@@ -12,12 +12,10 @@ bower install
 run node app.js
 visit localhost:3000
 Have fun!
-
 ```
 
 ## Run Tests 
 
 ```
 open SpecRunner.html
-
 ```
